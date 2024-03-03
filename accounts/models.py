@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
+# Custom User Manager
 class UserManager(BaseUserManager):
-    # create user
     def create_user(self, first_name, last_name, user_name, email, password):
         # validations
         if not first_name:
@@ -29,7 +29,6 @@ class UserManager(BaseUserManager):
         return user
     
 
-    # create superuser
     def create_superuser(self, first_name, last_name, user_name, email, password):
         # create user
         user = self.create_user(
@@ -48,7 +47,7 @@ class UserManager(BaseUserManager):
         return user
     
 
-
+# Custom User Model
 class User(AbstractBaseUser):
     RESTURANT = 1
     CUSTOMER = 2
