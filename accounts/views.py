@@ -16,6 +16,8 @@ def register_user(request):
     # POST request
     if request.method == 'POST':
         form = UserForm(request.POST)
+
+        # valid form data
         if form.is_valid():
             # User creation using create_user() from UserManager
             first_name = form.cleaned_data.get('first_name')
@@ -31,5 +33,15 @@ def register_user(request):
                 password=password
             )
             user.role = User.CUSTOMER
-
+            user.save()
+            # go back to Registration page after successful form submission
             return redirect('register_user')
+        
+        # invalid form data
+        print('Invalid form data')
+        print(form.errors)
+        context = {
+            'form': form
+        }
+        return render(request, 'accounts/register_user.html', context)
+        

@@ -51,7 +51,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     RESTURANT = 1
     CUSTOMER = 2
-
     ROLE_CHOICE = (
         (RESTURANT, 'Resturant'),
         (CUSTOMER, 'Customer')
@@ -90,6 +89,7 @@ class User(AbstractBaseUser):
         return True
 
 
+# User Profile Model
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', blank=True, null=True)
     profile_picture = models.ImageField(upload_to='users/profile_pictures/', blank=True, null=True)
