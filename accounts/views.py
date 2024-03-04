@@ -42,8 +42,6 @@ def register_user(request):
             return redirect('register_user')
         
         # invalid form data
-        print('Invalid form data')
-        print(form.errors)
         context = {
             'form': form
         }
