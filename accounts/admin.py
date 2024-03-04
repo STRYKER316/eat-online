@@ -22,7 +22,7 @@ class customUserAdmin(UserAdmin):
 
 # User Profile Admin Customization
 class customUserProfile(admin.ModelAdmin):
-    ordering = ['-user']
+    ordering = ['user']
 
 
 # Register your models here.
