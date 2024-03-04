@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from accounts.forms import UserForm
 from accounts.models import User
@@ -32,8 +33,11 @@ def register_user(request):
                 email=email,
                 password=password
             )
+            # Assign role and save user
             user.role = User.CUSTOMER
             user.save()
+            # Show successful registration message
+            messages.success(request, 'Your account is registered successfully')
             # go back to Registration page after successful form submission
             return redirect('register_user')
         
