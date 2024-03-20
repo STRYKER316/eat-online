@@ -16,7 +16,7 @@ class UserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
         if not password:
             raise ValueError('Users must have a password')
-        
+
         # create user
         user = self.model(
             email = self.normalize_email(email),
@@ -27,7 +27,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
+
 
     def create_superuser(self, first_name, last_name, user_name, email, password):
         # create user
@@ -45,7 +45,7 @@ class UserManager(BaseUserManager):
         user.is_superadmin = True
         user.save(using=self._db)
         return user
-    
+
 
 # Custom User Model
 class User(AbstractBaseUser):
@@ -64,7 +64,7 @@ class User(AbstractBaseUser):
     password = models.CharField(max_length=100)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, null=True)
 
-    # Django required fields
+    # Django fields
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -73,7 +73,7 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_name', 'first_name', 'last_name']
 

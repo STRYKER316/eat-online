@@ -7,7 +7,7 @@ from accounts.models import User, UserProfile
 class customUserAdmin(UserAdmin):
     list_display = ['user_name', 'email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff']
     ordering = ['user_name']
-    
+
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
